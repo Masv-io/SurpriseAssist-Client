@@ -5,7 +5,6 @@ import {
   View,
 } from 'react-native';
 import MapView from './MapView';
-import { FormLabel, FormInput } from 'react-native-elements';
 import moment from 'moment';
 import { Button } from 'react-native-elements';
 
