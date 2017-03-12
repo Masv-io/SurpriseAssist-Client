@@ -3,13 +3,13 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import ReservationScreen from './containers/ReservationScreen';
+import MapView from './components/MapView';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ReservationScreen />
+        <MapView />
       </View>
     )
   }
