@@ -29,8 +29,15 @@ class MapView extends Component {
     this._updateCurrentLocation = this._updateCurrentLocation.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchCurrentLocation();
+  }
+
+  componentDidMount() {
+    this.mapView.animateToCoordinate({
+      latitude: this.state.center.latitude,
+      longitude: this.state.center.longitude,
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,6 +66,7 @@ class MapView extends Component {
     return (
       <View style={styles.container}>
         <RNMapView
+          ref={elem => this.mapView = elem}
           onRegionChange={this._handleRegionChange}
           onRegionChangeComplete={this._updateCurrentLocation}
           style={{ left:0, right: 0, top:0, bottom: 0, position: 'absolute' }}
