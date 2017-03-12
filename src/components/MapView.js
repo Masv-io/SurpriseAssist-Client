@@ -12,18 +12,51 @@ import RNMapView from 'react-native-maps';
 class MapView extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      center: {
+        latitude: this.props.coordinates.latitude,
+        longitude: this.props.coordinates.longitude,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
+      },
+    };
+
+    this._handleRegionChange = this._handleRegionChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchCurrentLocation();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      center: {
+        ...nextProps.coordinates,
+        latitudeDelta: 0,
+        longitudeDelta: 0,
+      }
+    });
+  }
+
+  _handleRegionChange(region) {
+    this.setState({
+      center: region,
+    });
   }
 
   render() {
     return (
       <View style={styles.container}>
         <RNMapView
+          onRegionChange={this._handleRegionChange}
           style={{ left:0, right: 0, top:0, bottom: 0, position: 'absolute' }}
-          initialRegion={{
-            latitude: this.props.coordinates.lat,
-            longitude: this.props.coordinates.long,
-          }}
-        />
+          region={this.state.center}
+        >
+          <RNMapView.Marker
+            coordinate={this.state.center}
+          />
+        </RNMapView>
       </View>
     );
   }
@@ -37,8 +70,8 @@ const styles = StyleSheet.create({
 
 MapView.propTypes = {
   coordinates: React.PropTypes.shape({
-    lat: React.PropTypes.number.isRequired,
-    long: React.PropTypes.number.isRequired,
+    latitude: React.PropTypes.number.isRequired,
+    longitude: React.PropTypes.number.isRequired,
   }).isRequired,
 };
 

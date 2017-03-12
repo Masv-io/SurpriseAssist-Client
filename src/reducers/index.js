@@ -3,8 +3,8 @@ import { SET_LOCATION } from './../actions'
 
 const initialLocationState = {
   coordinates: {
-    lat: 37.782256,
-    long: -122.391273,
+    latitude: 37.782256,
+    longitude: -122.391273,
   },
 };
 

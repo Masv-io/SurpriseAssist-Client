@@ -11,8 +11,8 @@ export function fetchCurrentLocation() {
   return dispatch => {
     navigator.geolocation.getCurrentPosition(pos => {
       dispatch(setLocation({
-        lat: pos.coords.latitude,
-        long: pos.coords.longitude,
+        latitude: pos.coords.latitude,
+        longitude: pos.coords.longitude,
       }));
     });
   };
