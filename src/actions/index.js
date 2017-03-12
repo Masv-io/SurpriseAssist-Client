@@ -31,12 +31,12 @@ const setPendingReservation = (reservation) => {
   };
 }
 
-const dateFormat = 'YYYY-MM-DD’T’HH:mm:ss';
+const dateFormat = 'YYYY-MM-DDTHH:mm:ss';
 
 export function requestReservation(coordinates, date) {
   return dispatch => {
     const formattedDate = encodeURIComponent(moment(date).format(dateFormat));
-    const url = `${apiUrl}/reservations/surprise?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&start_date_time=&${formattedDate}`;
+    const url = `${apiUrl}/reservations/surprise?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&start_date_time=${formattedDate}`;
     axios.get(url).then(res => {
       dispatch(setPendingReservation(res));
     });
