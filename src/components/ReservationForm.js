@@ -34,10 +34,11 @@ class ReservationForm extends Component {
       <View style={styles.container}>
         <MapView />
         <DatePickerIOS
-        date={this.state.date.toDate()}
-        mode="datetime"
-        onDateChange={this._handleDateChange}
-      />
+          date={this.state.date.toDate()}
+          mode="datetime"
+          minuteInterval={15}
+          onDateChange={this._handleDateChange}
+        />
       <Button
         title="Surprise me"
         onPress={this._handleSubmit.bind(this)}

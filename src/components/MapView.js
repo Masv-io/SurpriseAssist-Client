@@ -26,6 +26,7 @@ class MapView extends Component {
     };
 
     this._handleRegionChange = this._handleRegionChange.bind(this);
+    this._updateCurrentLocation = this._updateCurrentLocation.bind(this);
   }
 
   componentDidMount() {
@@ -47,11 +48,19 @@ class MapView extends Component {
     });
   }
 
+  _updateCurrentLocation(region) {
+    this.props.setCurrentLocation({
+      latitude: region.latitude,
+      longitude: region.longitude,
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <RNMapView
           onRegionChange={this._handleRegionChange}
+          onRegionChangeComplete={this._updateCurrentLocation}
           style={{ left:0, right: 0, top:0, bottom: 0, position: 'absolute' }}
           region={this.state.center}
         >

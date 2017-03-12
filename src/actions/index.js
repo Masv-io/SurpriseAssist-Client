@@ -13,6 +13,12 @@ const setLocation = (location) => {
   };
 }
 
+export function setCurrentLocation(location) {
+  return dispatch => {
+    dispatch(setLocation(location));
+  };
+};
+
 export function fetchCurrentLocation() {
   return dispatch => {
     navigator.geolocation.getCurrentPosition(pos => {
