@@ -3,13 +3,13 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import SearchForm from './components/search-form';
+import ReservationScreen from './containers/ReservationScreen';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <SearchForm />
+        <ReservationScreen />
       </View>
     )
   }

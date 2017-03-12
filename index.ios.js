@@ -1,15 +1,19 @@
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-} from 'react-native';
-import App from './src/app';
+import React, { Component } from 'react'
+import { AppRegistry } from 'react-native'
+import { Provider } from 'react-redux'
+import App from './src/App';
+import configureStore from './src/store/configureStore';
 
-export default class SurpriseAssist extends Component {
+const store = configureStore();
+
+class SurpriseAssist extends Component {
   render() {
     return (
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     );
   }
 }
 
-AppRegistry.registerComponent('SurpriseAssist', () => SurpriseAssist);
+AppRegistry.registerComponent('SurpriseAssist', () => SurpriseAssist)
