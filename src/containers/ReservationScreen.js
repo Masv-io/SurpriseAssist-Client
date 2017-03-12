@@ -2,20 +2,47 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import React, { Component } from 'react';
 import * as actions from '../actions';
-import MapView from '../components/MapView';
 import ReservationForm from '../components/ReservationForm';
 import {
-  View,
+  Navigator,
   StyleSheet,
 } from 'react-native';
 
 class ReservationScreen extends Component {
   constructor(props) {
     super(props);
+
+    this._requestReservation = this._requestReservation.bind(this);
+    this._renderScene = this._renderScene.bind(this);
+
+    this._routes = {
+      ReservationForm: {
+        component: ReservationForm,
+        props: {
+          onSubmit: this._requestReservation,
+        },
+      },
+    };
   }
 
   componentDidMount() {
     this.props.fetchCurrentLocation();
+  }
+
+  _initialRouteStack() {
+    return [
+      this._routes.ReservationForm,
+    ];
+  }
+
+  _renderScene(route, nav) {
+    let props = Object.assign({}, route.props);
+    let Component = route.component;
+
+    return <Component
+      {...props}
+      navigator={nav}
+    />
   }
 
   _requestReservation(date) {
@@ -24,10 +51,11 @@ class ReservationScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <MapView />
-        <ReservationForm onSubmit={this._requestReservation.bind(this)} />
-      </View>
+      <Navigator
+        initialRouteStack={this._initialRouteStack()}
+        renderScene={this._renderScene}
+        sceneStyle={styles.container}
+      />
     );
   }
 }

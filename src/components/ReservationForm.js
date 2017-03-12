@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import MapView from './MapView';
 import { FormLabel, FormInput } from 'react-native-elements';
 import moment from 'moment';
 import { Button } from 'react-native-elements';
@@ -32,6 +33,7 @@ class ReservationForm extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <MapView />
         <DatePickerIOS
         date={this.state.date.toDate()}
         mode="datetime"
