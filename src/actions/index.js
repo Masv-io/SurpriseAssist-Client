@@ -37,7 +37,7 @@ const setPendingReservation = (reservation) => {
   };
 }
 
-const dateFormat = 'YYYY-MM-DDTHH:mm:ss';
+const dateFormat = 'YYYY-MM-DDTHH:mm';
 
 export function requestReservation(coordinates, date) {
   return dispatch => {
