@@ -9,6 +9,11 @@ import { Container } from 'native-base';
 import * as actions from '../actions';
 import RNMapView from 'react-native-maps';
 
+const defaultCoordinateDeltas = {
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+};
+
 class MapView extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +22,7 @@ class MapView extends Component {
       center: {
         latitude: this.props.coordinates.latitude,
         longitude: this.props.coordinates.longitude,
-        latitudeDelta: 0,
-        longitudeDelta: 0,
+        ...defaultCoordinateDeltas,
       },
     };
 
@@ -33,8 +37,7 @@ class MapView extends Component {
     this.setState({
       center: {
         ...nextProps.coordinates,
-        latitudeDelta: 0,
-        longitudeDelta: 0,
+        ...defaultCoordinateDeltas,
       }
     });
   }
