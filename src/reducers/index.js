@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import { SET_LOCATION } from './../actions'
+import { SET_LOCATION, SET_PENDING_RESERVATION } from './../actions'
+import moment from 'moment';
 
 const initialLocationState = {
   coordinates: {
@@ -19,8 +20,24 @@ const location = (state = initialLocationState, action) => {
   }
 };
 
+const initialReservationState = {
+  pendingReservation: null,
+};
+
+const reservation = (state = initialReservationState, action) => {
+  switch (action.type) {
+    case SET_PENDING_RESERVATION:
+      return Object.assign({}, state, {
+        pendingReservation: action.data,
+      });
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   location,
+  reservation,
 });
 
 export default rootReducer;

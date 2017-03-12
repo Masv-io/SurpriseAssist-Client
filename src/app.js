@@ -1,15 +1,15 @@
 import React from 'react';
 import {
   StyleSheet,
-  View
+  View,
 } from 'react-native';
-import MapView from './components/MapView';
+import ReservationScreen from './containers/ReservationScreen';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <MapView />
+        <ReservationScreen />
       </View>
     )
   }

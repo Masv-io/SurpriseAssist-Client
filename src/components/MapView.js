@@ -5,7 +5,6 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import { Container } from 'native-base';
 import * as actions from '../actions';
 import RNMapView from 'react-native-maps';
 
